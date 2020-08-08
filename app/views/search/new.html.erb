@@ -13,10 +13,17 @@
 <% end %>
 
 <% if @user_id %>
-  <p class="text-left"><%= link_to "#{@profile.last_name}", "https://www.flickr.com/people/#{@profile.id}", class:"text-dark" %></p>
-  <div class="photos container">
+  
+  <span class="h2 text-dark"><%= @profile.first_name %></span>
+  <span class="h2 text-dark"><%= @profile.last_name %></span>
+  <span class="text-left"> - <%= link_to "Profile", "https://www.flickr.com/people/#{@profile.id}" %></span>
+  <div class="photos d-flex d-flex-row flex-wrap">
+
     <% @photos.each do |photo| %>
-      <%= image_tag("https://www.flickr.com/photos/#{@user_id}/#{photo.id}") %>
+      <div class="mx-2 my-3" style="width: 30%;">
+        <a href=<%=Flickr.url(photo)%>><img src=<%= Flickr.url(photo) %> width="100%"  ></a>
+      </div>
     <% end %>
+
   </div>
 <% end %>
