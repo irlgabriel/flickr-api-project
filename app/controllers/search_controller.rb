@@ -6,8 +6,8 @@ class SearchController < ApplicationController
     if params[:user_id]
       @user_id = params[:user_id]
       flickr = Flickr.new(ENV['FLICKR_API_KEY'], ENV['FLICKR_SHARED_SECRET'])
-      @photos = flickr.photos.getRecent
-      byebug
+      @profile = flickr.profile.getProfile(:user_id => @user_id)
+      @photos = flickr.people.getPhotos(:user_id => @user_id)
     end
   end
 

@@ -8,10 +8,15 @@
     <%= f.label :user_id, "User ID", class:"text-info" %>  
     <%= f.text_field :user_id, class:"form-control" %>
 
-  <%= f.submit "Search", class:"btn btn-success px-3 py-2 mt-3"%>
+    <%= f.submit "Search", class:"btn btn-success px-3 py-2 mt-3"%>
   </div>
 <% end %>
 
 <% if @user_id %>
-  <%= p @photos%>
+  <p class="text-left"><%= link_to "#{@profile.last_name}", "https://www.flickr.com/people/#{@profile.id}", class:"text-dark" %></p>
+  <div class="photos container">
+    <% @photos.each do |photo| %>
+      <%= image_tag("https://www.flickr.com/photos/#{@user_id}/#{photo.id}") %>
+    <% end %>
+  </div>
 <% end %>
