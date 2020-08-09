@@ -7,6 +7,13 @@ class SearchController < ApplicationController
       @user_id = params[:user_id]
       flickr = Flickr.new(ENV['FLICKR_API_KEY'], ENV['FLICKR_SHARED_SECRET'])
       @profile = flickr.profile.getProfile(:user_id => @user_id)
+      
+      if flash[:notice]
+        flash[:notice] = "Found user successfully!"
+      else
+        flash[:notice] = "Could not find user!"
+      end
+
       @photos = flickr.people.getPhotos(:user_id => @user_id)
     end
   end
